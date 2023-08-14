@@ -1,3 +1,11 @@
+/*
+ * @Author: Dreamice dreamice13@foxmail.com
+ * @Date: 2022-02-16 16:27:04
+ * @LastEditors: Dreamice dreamice13@foxmail.com
+ * @LastEditTime: 2023-08-15 11:28:37
+ * @FilePath: \ModaApi\app.js
+ * @Description: 
+ */
 // 导入 express 模块
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -72,6 +80,10 @@ const searchRouter = require('./router/search')
 app.use('/api', searchRouter)
 const tagRouter = require('./router/tag')
 app.use('/api', tagRouter)
+const medicineRouter = require('./router/medicine')
+app.use('/api', medicineRouter)
+const districtRouter = require('./router/district')
+app.use('/api', districtRouter)
 
 // 错误中间件
 app.use(function (err, req, res, next) {
@@ -85,6 +97,6 @@ app.use(function (err, req, res, next) {
 
 // 启动服务器
 // 调用 app.listen 方法，指定端口号并启动web服务器
-app.listen(3007, function () {
+app.listen(3008, function () {
   console.log('api server running at http://127.0.0.1:3007')
 })
