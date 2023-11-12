@@ -2,7 +2,7 @@
  * @Author: Dreamice dreamice13@foxmail.com
  * @Date: 2022-02-16 16:27:04
  * @LastEditors: Dreamice dreamice13@foxmail.com
- * @LastEditTime: 2023-08-15 11:28:37
+ * @LastEditTime: 2023-11-14 11:30:29
  * @FilePath: \ModaApi\app.js
  * @Description: 
  */
@@ -80,8 +80,8 @@ const searchRouter = require('./router/search')
 app.use('/api', searchRouter)
 const tagRouter = require('./router/tag')
 app.use('/api', tagRouter)
-const medicineRouter = require('./router/medicine')
-app.use('/api', medicineRouter)
+const sayingRouter = require('./router/saying')
+app.use('/api', sayingRouter)
 const districtRouter = require('./router/district')
 app.use('/api', districtRouter)
 
