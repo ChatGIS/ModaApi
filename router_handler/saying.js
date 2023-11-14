@@ -64,32 +64,20 @@ exports.deleteSaying = (req, res) => {
         return res.aa('删除语录成功！', 200)
     })
 }
-
-/* 
-  * 网站推荐
-*/
-exports.recommendsayings = (req, res) => {
-    let num = parseInt(req.query.num)
-    num = num - 12
-    const subSql = " SELECT w.*, lc.num_click, tags.tags_name FROM saying w LEFT JOIN log_click lc ON w.id = lc.saying_id LEFT JOIN (SELECT rwt.webid, GROUP_CONCAT(st.name) tags_name, GROUP_CONCAT(st.id) tags_id FROM rel_web_tag rwt LEFT JOIN sys_tag st ON rwt.tagid = st.id GROUP BY rwt.webid) tags ON w.id = tags.webid "
-    const sql = 
-        "SELECT myTable.* FROM ("
-        + " ( " + subSql + " ORDER BY lc.num_click DESC LIMIT 4)"
-        + " UNION (" + subSql + " ORDER BY lc.num_click ASC LIMIT 4)"
-        + " UNION (" + subSql + " ORDER BY w.create_time DESC LIMIT 4)"
-        + " UNION (" + subSql + " WHERE w.id >= (RAND()*(SELECT MAX(id) FROM saying)) LIMIT ?)"
-        + " ) AS myTable "
-        + " ORDER BY RAND()"
-        // + " LIMIT ?"
-    console.log(sql)
-    
-    db.query(sql, num, (err, results) => {
+/**
+ * @description: 语录推荐
+ * @param {*} req
+ * @param {*} res
+ * @return {*}
+ */
+exports.recommendSaying = (req, res) => {
+    const sql = "SELECT * FROM saying s ORDER BY RAND() LIMIT 1;"
+    db.query(sql, (err, results) => {
         const total = results.length
         const data = {
             total: total,
-            num: num,
-            sayings: results
+            saying: results
         }
-        res.aa("获取推荐网站成功", 200, data)
+        res.aa("获取推荐语录成功", 200, data)
     })
 } 
