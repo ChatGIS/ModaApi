@@ -1,3 +1,11 @@
+/*
+ * @Author: Dreamice dreamice13@foxmail.com
+ * @Date: 2022-02-18 20:50:25
+ * @LastEditors: Dreamice dreamice13@foxmail.com
+ * @LastEditTime: 2023-11-16 01:15:18
+ * @FilePath: \ModaApi\router_handler\website.js
+ * @Description: 
+ */
 const db = require('../db/index')
 
 exports.websiteList = (req, res) => {
@@ -187,4 +195,19 @@ exports.recommendWebsites = (req, res) => {
         }
         res.aa("获取推荐网站成功", 200, data)
     })
-} 
+}
+/**
+ * @description: 网站总数
+ * @param {*} req
+ * @param {*} res
+ * @return {*}
+ */
+exports.totalWeb = (req, res) => {
+    const sql = `select count(id) total from website s`
+    db.query(sql, (err, results) => {
+        const data = {
+            total: results[0].total
+        }
+        res.aa("获取网站总数成功", 200, data)
+    })
+}

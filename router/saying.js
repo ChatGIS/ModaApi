@@ -34,5 +34,10 @@ router.get('/recommendSaying', sayingHandler.recommendSaying)
  * @return {*}
  */
 router.get('/groupSaying', sayingHandler.groupSaying)
+/**
+ * @description: 语录总数
+ * @return {*}
+ */
+router.get('/totalSaying', sayingHandler.totalSaying)
 
 module.exports = router

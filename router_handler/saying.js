@@ -89,11 +89,11 @@ exports.recommendSaying = (req, res) => {
  */
 exports.groupSaying = (req, res) => {
     // 数量大于1的分组
-    const sqlNoOne = `select author, count(id) num  from saying s
+    const sqlNoOne = `select author name, count(id) value  from saying s
     group by author
     having count(id) > 1`
     // 全部分组
-    const sql = `select author, count(id) num  from saying s
+    const sql = `select author name, count(id) value  from saying s
     group by author`
     
     db.query(sql, (err, results) => {
@@ -102,4 +102,26 @@ exports.groupSaying = (req, res) => {
         }
         res.aa("获取语录分组成功", 200, data)
     })
-} 
+}
+
+/**
+ * @description: 语录总数
+ * @param {*} req
+ * @param {*} res
+ * @return {*}
+ */
+exports.totalSaying = (req, res) => {
+    // 数量大于1的分组
+    const sqlNoOne = `select author name, count(id) value  from saying s
+    group by author
+    having count(id) > 1`
+    // 全部分组
+    const sql = `select count(id) total from saying s`
+    
+    db.query(sql, (err, results) => {
+        const data = {
+            total: results[0].total
+        }
+        res.aa("获取语录总数成功", 200, data)
+    })
+}

@@ -12,5 +12,9 @@ router.put('/websitesclick/:id', websiteHandler.clickWebsite)
   * 网站推荐
 */
 router.get('/recommendWebsites', websiteHandler.recommendWebsites)
-
+/**
+ * @description: 网站总数
+ * @return {*}
+ */
+router.get('/totalWeb', websiteHandler.totalWeb)
 module.exports = router
