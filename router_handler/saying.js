@@ -80,4 +80,26 @@ exports.recommendSaying = (req, res) => {
         }
         res.aa("获取推荐语录成功", 200, data)
     })
+}
+/**
+ * @description: 语录分组
+ * @param {*} req
+ * @param {*} res
+ * @return {*}
+ */
+exports.groupSaying = (req, res) => {
+    // 数量大于1的分组
+    const sqlNoOne = `select author, count(id) num  from saying s
+    group by author
+    having count(id) > 1`
+    // 全部分组
+    const sql = `select author, count(id) num  from saying s
+    group by author`
+    
+    db.query(sql, (err, results) => {
+        const data = {
+            group: results
+        }
+        res.aa("获取语录分组成功", 200, data)
+    })
 } 

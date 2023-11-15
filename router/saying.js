@@ -29,4 +29,10 @@ router.delete('/saying/:id', sayingHandler.deleteSaying)
 */
 router.get('/recommendSaying', sayingHandler.recommendSaying)
 
+/**
+ * @description: 语录分组
+ * @return {*}
+ */
+router.get('/groupSaying', sayingHandler.groupSaying)
+
 module.exports = router
