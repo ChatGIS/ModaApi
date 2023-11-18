@@ -2,7 +2,7 @@
  * @Author: Dreamice dreamice13@foxmail.com
  * @Date: 2022-02-18 20:50:25
  * @LastEditors: Dreamice dreamice13@foxmail.com
- * @LastEditTime: 2023-11-16 01:15:18
+ * @LastEditTime: 2023-11-16 01:36:41
  * @FilePath: \ModaApi\router_handler\website.js
  * @Description: 
  */
@@ -209,5 +209,26 @@ exports.totalWeb = (req, res) => {
             total: results[0].total
         }
         res.aa("获取网站总数成功", 200, data)
+    })
+}
+
+/**
+ * @description: 网站总数
+ * @param {*} req
+ * @param {*} res
+ * @return {*}
+ */
+exports.groupWeb = (req, res) => {
+    const sql = `select st.name, a.total value from 
+        (select tagid, count(id) total
+        from rel_web_tag rwt
+        group by rwt.tagid) a
+        left  join sys_tag st
+        on a.tagid = st.id`
+    db.query(sql, (err, results) => {
+        const data = {
+            group: results
+        }
+        res.aa("获取网站分组成功", 200, data)
     })
 }

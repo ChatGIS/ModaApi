@@ -18,3 +18,10 @@ router.get('/recommendWebsites', websiteHandler.recommendWebsites)
  */
 router.get('/totalWeb', websiteHandler.totalWeb)
 module.exports = router
+
+/**
+ * @description: 网站分组
+ * @return {*}
+ */
+router.get('/groupWeb', websiteHandler.groupWeb)
+module.exports = router
